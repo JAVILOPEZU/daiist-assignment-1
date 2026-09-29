@@ -1,18 +1,15 @@
 # Assignment 1 Report
 
-*Delete this italic guidance as you fill in each section. You'll be asked to
-defend any of this without your code in front of you — write only what you
-can actually explain.*
 
-- **Name**:
-- **Student ID**:
-- **Email**:
-- **Group**: [BBADBA 5A | BBADBA 5B | PPLEDBA 5A | BDBA 3A]
+- **Javier López-Usero Fernández**:
+- **18633**:
+- **jlopezusero.ieu2022@student.ie.edu**:
+- **Group**: BBADBA 5B
 
 ## Dataset
 
-*What is it, where did you get it, what does one row represent, how many
-rows/columns, and why did you pick it.*
+
+The Wine Quality Dataset is created from samples of Vinho Verde which is a portuguese wine. Some researchers collected physicochemical measurements of each wine and paired it with a quality score by blind tasting panels of sommeliers. One row represents one wine sample with a score in some characteristics and a quality score. There are 6497 rows in total, 1599 of red wine and 4898 of white wine. Quality scores are concentrated around 5-6 which makes it hard to distinguish what makes a wine great. I picked it because I think its interesting to see what makes a good wine great, on average, and to see to which features should companies focus more.
 
 ## Business / real-life framing
 
@@ -20,6 +17,8 @@ rows/columns, and why did you pick it.*
 for how you built the pipeline — target definition, whether a time-based
 split was necessary and why (or why not), which metric should drive the
 decision threshold and why.*
+
+
 
 ## Data preparation & feature engineering
 

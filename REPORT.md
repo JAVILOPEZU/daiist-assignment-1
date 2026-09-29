@@ -18,7 +18,7 @@ The dataset is from: UCI Machine Learning Repository, Cortez et al., 2009
 
 
 An online club sells a monthly Premium Selection of wines from Vinho Verde at a higher price. Each pack comes with some basic measurements (the features in our data) and we want to create a model that selects those wines whose features will the sommeliers like. We are trying to answer whether chemistry can stand in in human tasting and we can decipher what makes a good wine great.
-The target is to discover which features turn a wine into higher than a 7.
+The target is to discover which features turn a wine into higher or same quALITY than a 7.
 A time split is not neccessary since wines don't have dates themselves, so a random split was done. 
 I also assigne a cost to a false negative and to a false positive meaning that total cost was the measure to be optimized for.
 
@@ -26,17 +26,19 @@ I also assigne a cost to a false negative and to a false positive meaning that t
 
 As for feature engineering and data preparation we will do the following:
 - Remove duplicate rows (18%) of the dataset
-- Do a stratified train/val/test split. We want to know what makes a good wine great, so we will focus on a logistic regression directly. we are stratifying so that each  group has a representative sample and the split in order to not leak any data onto different categories
+- Do a stratified train/val/test split. We want to know what makes a good wine great, so we will focus on a logistic regression directly. we are stratifying so that each  group has a representative sample in train, test and val.
 - Log the right skewed features so that extreme value don't pull parameters towards them.
-- Cap extreme values, in order to not lose data, capping instead of eliminating allows for more data preservation and eliminating the 1% and 99% accordingly.
+- Cap extreme values, in order to not lose data, capping instead of eliminating allows for more data preservation and replacing the 1% and 99% accordingly.
 - Reduce multicolinearity by taking away strongly correlated features which might confuss the model.
 - Standarize all features on training so that they are on the same scale
+I created free_so2_ratio, which is a measure that protects the wine from oxidation and bacteria and color in 0 for red and 1 for white, allowing for one model to cover both types.
+I dropped density since it was determined by alcohol and sugar and also free sulfur dioxide, since we put the ratio instead.
 
 ## Modeling: three implementations, one model
 
-I turned quality into a yes or no target. with yes being over or equal to 7 and logistic regression is the best fit model for yes / no problems since it outputs a probability between 1 and 0 that the wine is good.
+I turned quality into a yes or no target. with yes being over or equal to 7 and logistic regression is the best fit model for yes / no problems since it outputs a probability between 0 and 1 that the wine is good.
 Linear regression could bredict below 0 or above 1.
-They do agree
+They do agree because they minimize avg loss and have L2 penalty. They al agree that alcohol is the strongest positive factor and volatile acidity the strongest negative one.
 
 **Test-set results (threshold = 0.5)**
 
